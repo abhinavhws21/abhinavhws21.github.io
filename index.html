@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhinav H Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a 3D-viewport hero with a shading-mode switch, then sketches, rigging, skills and contact. */
+:root {
+  --bg: #eceef1;
+  --panel: #f7f8fa;
+  --fg: #15181e;
+  --muted: #5b6370;
+  --line: #d3d7de;
+  --accent: #2f55ff;
+  --accent-fg: #ffffff;
+  --v1: #2f55ff;
+  --v2: #ff7a4d;
+  --v3: #ffc93c;
+  --v4: #2fbf98;
+  --vp: #dfe3ea;
+  --vp-grid: #c9ced8;
+  --clay: #c9b8a8;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1e23; --panel: #23272e; --fg: #eceef2; --muted: #9aa3b0; --line: #353a43;
+    --accent: #7d97ff; --accent-fg: #10131a;
+    --v1: #6f8bff; --v2: #ff8f68; --v3: #ffd25c; --v4: #43d1aa;
+    --vp: #2a2e36; --vp-grid: #363b45; --clay: #a89888;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b1e23; --panel: #23272e; --fg: #eceef2; --muted: #9aa3b0; --line: #353a43;
+  --accent: #7d97ff; --accent-fg: #10131a;
+  --v1: #6f8bff; --v2: #ff8f68; --v3: #ffd25c; --v4: #43d1aa;
+  --vp: #2a2e36; --vp-grid: #363b45; --clay: #a89888;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.05; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.mono { font-family: var(--font-mono); }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 20px; }
+.bar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 14px; }
+.bar nav a { text-decoration: none; color: var(--muted); }
+.bar nav a:hover { color: var(--fg); }
+.mark { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+.status { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: var(--v4); display: inline-block; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px 48px; align-items: center; padding-block: 32px 56px; }
+.hero h1 { font-size: clamp(44px, 7vw, 88px); font-weight: 800; }
+.hero .role { margin-top: 20px; font-size: 19px; max-width: 34ch; }
+.hero .sub { margin-top: 12px; color: var(--muted); max-width: 46ch; }
+.cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 6px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--panel); color: var(--fg); }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.btn:hover { filter: brightness(1.06); }
+
+.viewport { background: var(--vp); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; min-width: 0; }
+.vp-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.modes { display: flex; gap: 4px; }
+.modes button { font-family: var(--font-mono); font-size: 12px; min-height: 32px; padding: 0 12px; border-radius: 4px; border: 1px solid transparent; background: transparent; color: var(--muted); cursor: pointer; }
+.modes button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+.modes button:hover:not([aria-pressed="true"]) { color: var(--fg); border-color: var(--line); }
+.vp-stage { position: relative; aspect-ratio: 1 / 0.86; max-width: 100%;
+  background-image: linear-gradient(var(--vp-grid) 1px, transparent 1px), linear-gradient(90deg, var(--vp-grid) 1px, transparent 1px);
+  background-size: 32px 32px; }
+.vp-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vp-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 8px 12px; border-top: 1px solid var(--line); background: var(--panel); font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+.cube path { stroke-linejoin: round; transition: fill 0.2s, stroke 0.2s; }
+.vp-stage[data-mode="solid"] .cube .t { filter: none; }
+.vp-stage[data-mode="solid"] .cube .l { filter: brightness(0.84); }
+.vp-stage[data-mode="solid"] .cube .r { filter: brightness(0.68); }
+.vp-stage[data-mode="solid"] .cube path { stroke: none; }
+.vp-stage[data-mode="clay"] .cube path { fill: var(--clay); stroke: none; }
+.vp-stage[data-mode="clay"] .cube .t { filter: brightness(1.08); }
+.vp-stage[data-mode="clay"] .cube .l { filter: brightness(0.88); }
+.vp-stage[data-mode="clay"] .cube .r { filter: brightness(0.72); }
+.vp-stage[data-mode="wire"] .cube path { fill: var(--vp); fill-opacity: 0.6; stroke: var(--accent); stroke-width: 1.2; filter: none; }
+
+/* Sections */
+section { padding-block: 56px 8px; border-top: 1px solid var(--line); margin-top: 24px; }
+.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px 32px; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(30px, 4.5vw, 48px); font-weight: 700; }
+.sec-head p { color: var(--muted); max-width: 44ch; }
+
+/* Sketches */
+.sketches { column-count: 3; column-gap: 24px; }
+.sketches figure { margin: 0 0 24px; break-inside: avoid; min-width: 0; }
+.sketches img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; margin-top: 10px; font-size: 15px; }
+figcaption span { font-size: 12px; color: var(--muted); }
+@media (max-width: 900px) { .sketches { column-count: 2; } }
+@media (max-width: 520px) { .sketches { column-count: 1; } }
+
+/* Rigging */
+.rigs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 24px; }
+.rigs figure { margin: 0; min-width: 0; }
+.rigs img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; border: 1px solid var(--line); border-radius: 6px; background: #3a3a3a; }
+
+/* Skills */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 32px 48px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chips span { font-size: 14px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); }
+.two h3 { font-size: 22px; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px 48px; align-items: start; }
+.contact h2 { font-size: clamp(34px, 5.5vw, 64px); font-weight: 800; }
+.rows div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.rows dt { color: var(--muted); font-size: 14px; }
+.rows dd { margin: 0; font-family: var(--font-mono); font-size: 14px; overflow-wrap: anywhere; }
+footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 760px) {
+  .hero, .contact { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .cube path { transition: none; } }
+
+body { margin: 0; }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="bar">
+    <span class="mark">Abhinav H</span>
+    <nav aria-label="Sections">
+      <a href="#sketches">Sketches</a><a href="#rigging">Rigging</a><a href="#tools">Skills</a><a href="#contact">Contact</a>
+    </nav>
+    <span class="status"><i></i>Open to remote projects</span>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="label">Portfolio</p>
+        <h1 style="margin-top:14px">Abhinav H</h1>
+        <p class="role">Emerging digital artist learning 3D in Blender and Adobe tools.</p>
+        <p class="sub">I'm early in my career and have a few projects so far: rigging in Blender and digital sketches in Adobe tools. I'm keen to learn and take feedback.</p>
+        <div class="cta">
+          <a class="btn primary" href="#sketches">See the work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="viewport">
+        <div class="vp-head">
+          <div class="modes" role="group" aria-label="Shading mode">
+            <button type="button" data-mode="solid" aria-pressed="true">Solid</button>
+            <button type="button" data-mode="clay" aria-pressed="false">Clay</button>
+            <button type="button" data-mode="wire" aria-pressed="false">Wire</button>
+          </div>
+          <span class="label">Perspective</span>
+        </div>
+        <div class="vp-stage" id="stage" data-mode="solid">
+          <svg id="voxels" viewBox="0 0 400 344" role="img" aria-label="Isometric voxel tower shown in solid, clay or wireframe shading"></svg>
+        </div>
+        <div class="vp-foot"><span id="stat-cubes">Cubes 0</span><span id="stat-tris">Tris 0</span><span>Units: 1 voxel</span></div>
+      </div>
+    </div>
+
+    <section id="sketches">
+      <div class="sec-head">
+        <h2>Adobe sketches</h2>
+        <p>Line and tone studies made in Adobe tools. I use them to plan shapes and values before modeling.</p>
+      </div>
+      <div class="sketches">
+        <figure><img src="img/sketch-1.jpg" alt="Line study of a tall standing temple statue with garlands, holding a staff"><figcaption><b>Temple statue</b><span class="mono">Line study · Adobe</span></figcaption></figure>
+        <figure><img src="img/sketch-2.jpg" alt="High-contrast ink study of a figure in a horned goat mask and a long symbol-covered robe"><figcaption><b>Costume figure</b><span class="mono">High-contrast ink · Adobe</span></figcaption></figure>
+        <figure><img src="img/sketch-3.jpg" alt="High-contrast study of a sports car driving under a cloudy sky"><figcaption><b>Sports car</b><span class="mono">Tone study · Adobe</span></figcaption></figure>
+        <figure><img src="img/sketch-4.jpg" alt="Pencil drawing of a cottage with a stone path, trees and shrubs"><figcaption><b>Cottage and stone path</b><span class="mono">Pencil study · Adobe</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section id="rigging">
+      <div class="sec-head">
+        <h2>Rigging in Blender</h2>
+        <p>Rigged figures and articulated joints, shown as Blender viewport captures.</p>
+      </div>
+      <div class="rigs">
+        <figure><img src="img/rig-character.png" alt="Blender viewport showing a male character in a T-pose with a bone rig inside the mesh"><figcaption><b>Character rig</b><span class="mono">T-pose, bone setup · Blender</span></figcaption></figure>
+        <figure><img src="img/rig-robot.png" alt="Blender front orthographic view of a six-axis industrial robot arm with its joints posed"><figcaption><b>Articulated robot arm</b><span class="mono">Joint setup, front ortho · Blender</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="sec-head">
+        <h2>Skills and tools</h2>
+        <p>What I'm using now and building on.</p>
+      </div>
+      <div class="two">
+        <div>
+          <h3>Skills</h3>
+          <div class="chips"><span>Rigging basics</span><span>3D rendering</span><span>Digital sketching</span></div>
+        </div>
+        <div>
+          <h3>Software</h3>
+          <div class="chips"><span>Blender (primary)</span><span>Adobe Creative Suite</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div>
+          <p class="label">Contact</p>
+          <h2 style="margin-top:14px">Let's work together.</h2>
+        </div>
+        <dl class="rows" style="margin:0">
+          <div><dt>Email</dt><dd>abhinavhws@gmail.com</dd></div>
+        </dl>
+      </div>
+      <footer class="label"><span>Abhinav H</span><span>Emerging digital artist</span></footer>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  // Isometric voxel tower: heights per grid cell, drawn back to front.
+  var H = [
+    [1, 2, 1, 0, 0],
+    [2, 4, 3, 1, 0],
+    [1, 3, 5, 2, 1],
+    [0, 1, 2, 3, 1],
+    [0, 0, 1, 1, 1]
+  ];
+  var S = 34, W = S * 0.866, ox = 200, oy = 78;
+  var svg = document.getElementById('voxels');
+  var cubes = 0;
+  var out = '';
+  function pt(x, y) { return x.toFixed(1) + ',' + y.toFixed(1); }
+  function cube(i, j, k, c) {
+    var cx = ox + (i - j) * W, cy = oy + (i + j) * S * 0.5 - k * S;
+    var top = 'M' + pt(cx, cy) + 'L' + pt(cx + W, cy + S * 0.5) + 'L' + pt(cx, cy + S) + 'L' + pt(cx - W, cy + S * 0.5) + 'Z';
+    var left = 'M' + pt(cx - W, cy + S * 0.5) + 'L' + pt(cx, cy + S) + 'L' + pt(cx, cy + S * 2) + 'L' + pt(cx - W, cy + S * 1.5) + 'Z';
+    var right = 'M' + pt(cx + W, cy + S * 0.5) + 'L' + pt(cx, cy + S) + 'L' + pt(cx, cy + S * 2) + 'L' + pt(cx + W, cy + S * 1.5) + 'Z';
+    var f = 'style="fill:var(--v' + c + ')"';
+    cubes++;
+    return '<g class="cube"><path class="l" ' + f + ' d="' + left + '"/><path class="r" ' + f + ' d="' + right + '"/><path class="t" ' + f + ' d="' + top + '"/></g>';
+  }
+  var order = [];
+  for (var i = 0; i < 5; i++) for (var j = 0; j < 5; j++) order.push([i, j]);
+  order.sort(function (a, b) { return (a[0] + a[1]) - (b[0] + b[1]); });
+  order.forEach(function (p) {
+    var h = H[p[0]][p[1]];
+    for (var k = 0; k < h; k++) out += cube(p[0], p[1], k, 1 + ((p[0] + p[1] + k) % 4));
+  });
+  svg.innerHTML = out;
+  document.getElementById('stat-cubes').textContent = 'Cubes ' + cubes;
+  document.getElementById('stat-tris').textContent = 'Tris ' + (cubes * 12);
+
+  var stage = document.getElementById('stage');
+  document.querySelectorAll('.modes button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      stage.setAttribute('data-mode', b.getAttribute('data-mode'));
+      document.querySelectorAll('.modes button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
